@@ -17,7 +17,6 @@ if not os.path.exists(DATABASE_DIR):
     os.makedirs(DATABASE_DIR)
 
 # ----------------- PEMBACAAN OTOMATIS & RELEVANSI MATERI -----------------
-# Template pertanyaan relevan sesuai topik kata kunci materi
 BANK_PERTANYAAN_TOPIK = {
     "sastra": "Bagaimana pendekatan struktural dan resepsi sastra dalam membedah karya sastra modern?",
     "apresiasi": "Apa langkah-langkah konkret dalam mengapresiasi dan menganalisis teks puisi serta prosa?",
@@ -42,7 +41,6 @@ def muat_daftar_materi():
         nama_bersih = os.path.splitext(nama_file)[0].replace("_", " ").title()
         ikon = pilihan_ikon[idx % len(pilihan_ikon)]
         
-        # Buat pertanyaan otomatis yang relevan dengan nama file/materi
         kata_kunci = os.path.splitext(nama_file)[0].lower()
         pertanyaan_cocok = None
         for kunci, tanya in BANK_PERTANYAAN_TOPIK.items():
@@ -108,7 +106,6 @@ def cari_jawaban_di_database(pertanyaan, daftar_materi):
         isi1 = ambil_konten(m1["path"])
         return f"Sistem tidak menemukan kata kunci yang persis spesifik. Berikut referensi dari materi **{m1['nama']}**:\n\n{isi1}"
 
-
 # ----------------- PERTANYAAN & PANDUAN DINAMIS -----------------
 def buat_pertanyaan_kerap_muncul(daftar_materi):
     """Membuat pertanyaan yang mengikuti materi di folder database."""
@@ -122,7 +119,6 @@ def buat_pertanyaan_kerap_muncul(daftar_materi):
         ])
 
     return pertanyaan[:6]
-
 
 def buat_panduan_bertanya(daftar_materi):
     """Menyusun panduan berdasarkan materi yang tersedia."""
@@ -539,6 +535,7 @@ else:
                 ):
                     st.session_state.teks_pertanyaan = m1["contoh_tanya"]
                     st.session_state.jawaban_tutor = ambil_konten(m1["path"])
+                    st.rerun()
 
             if i + 1 < len(materi_aktif):
                 m2 = materi_aktif[i + 1]
@@ -556,6 +553,7 @@ else:
                     ):
                         st.session_state.teks_pertanyaan = m2["contoh_tanya"]
                         st.session_state.jawaban_tutor = ambil_konten(m2["path"])
+                        st.rerun()
 
         st.markdown('</div>', unsafe_allow_html=True)
 
@@ -594,7 +592,7 @@ st.markdown("""
 
 pertanyaan_user = st.text_area(
     label="Kotak Pertanyaan",
-    value=st.session_state.teks_pertanyaan,
+    key="teks_pertanyaan",
     placeholder="Ketik pertanyaan atau konsep kebahasaan yang ingin Anda pelajari...",
     height=120,
     label_visibility="collapsed"
@@ -603,9 +601,9 @@ pertanyaan_user = st.text_area(
 col_aksi1, col_aksi2 = st.columns([3, 1])
 with col_aksi1:
     if st.button("➤ AJUKAN SEKARANG"):
-        if pertanyaan_user.strip():
+        if st.session_state.teks_pertanyaan.strip():
             with st.spinner("🌸 AI Tutor Naima H sedang menelaah basis data materi Anda..."):
-                st.session_state.jawaban_tutor = cari_jawaban_di_database(pertanyaan_user, materi_aktif)
+                st.session_state.jawaban_tutor = cari_jawaban_di_database(st.session_state.teks_pertanyaan, materi_aktif)
         else:
             st.warning("Silakan tuliskan pertanyaan terlebih dahulu ya! 💕")
 
