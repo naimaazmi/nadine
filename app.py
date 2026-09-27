@@ -168,25 +168,14 @@ def bersihkan_halaman():
     st.session_state.teks_pertanyaan = ""
     st.session_state.jawaban_tutor = None
 
-# ----------------- CSS: BOTANICAL FLORAL SOFT PINK & TIMES NEW ROMAN -----------------
+# ----------------- CSS RESPONSIF (DESKTOP & HP) -----------------
 st.markdown("""
 <style>
+    /* 1. TAMPILAN UMUM (DESKTOP / LAPTOP) */
     html, body, .stApp, .stApp p, .stApp div, .stApp span, .stApp label,
     .stApp button, .stApp textarea, .stApp input, .stApp h1, .stApp h2,
     .stApp h3, .stApp h4, .stApp li {
         font-family: 'Times New Roman', Times, serif !important;
-    }
-
-    .material-icons,
-    .material-icons-outlined,
-    .material-icons-round,
-    .material-icons-sharp,
-    .material-symbols-rounded,
-    .material-symbols-outlined {
-        font-family: 'Material Symbols Rounded', 'Material Icons',
-                     sans-serif !important;
-        font-weight: normal !important;
-        font-style: normal !important;
     }
 
     .stApp {
@@ -234,8 +223,14 @@ st.markdown("""
         margin-bottom: 25px;
     }
 
+    .hero-icon {
+        flex-shrink: 0;
+        width: 100px;
+        height: 100px;
+    }
+
     .main-title {
-        font-size: 2.6rem;
+        font-size: 2.5rem;
         font-weight: bold;
         color: #880e4f;
         line-height: 1.15;
@@ -340,11 +335,6 @@ st.markdown("""
         box-shadow: 0 4px 15px rgba(244, 143, 177, 0.18) !important;
     }
 
-    .stTextArea textarea:focus {
-        border-color: #ad1457 !important;
-        box-shadow: 0 4px 20px rgba(173, 20, 87, 0.3) !important;
-    }
-
     div.stButton > button {
         background: linear-gradient(135deg, #a63a58 0%, #7d1c37 100%) !important;
         color: #ffffff !important;
@@ -356,39 +346,6 @@ st.markdown("""
         width: 100% !important;
         box-shadow: 0 6px 16px rgba(125, 28, 55, 0.3) !important;
         transition: all 0.25s ease !important;
-    }
-
-    div.stButton > button:hover {
-        background: linear-gradient(135deg, #bd4b6c 0%, #912443 100%) !important;
-        transform: translateY(-2px);
-    }
-
-    .daftar-materi-button button {
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        min-height: 58px !important;
-        padding: 12px 20px !important;
-        border: 2px solid #f4a6c1 !important;
-        border-radius: 18px !important;
-        background: rgba(255, 255, 255, 0.96) !important;
-        color: #880e4f !important;
-        font-family: 'Times New Roman', Times, serif !important;
-        font-size: 1.12rem !important;
-        font-weight: bold !important;
-        line-height: 1.35 !important;
-        white-space: normal !important;
-        box-shadow: 0 5px 15px rgba(240, 98, 146, 0.08) !important;
-    }
-
-    .daftar-materi-button button:hover {
-        border-color: #ec407a !important;
-        color: #7b113a !important;
-        background: #fff7fa !important;
-    }
-
-    .daftar-materi-content {
-        padding: 8px 0 4px 0;
     }
 
     .topic-card {
@@ -409,6 +366,113 @@ st.markdown("""
         font-weight: bold;
         color: #880e4f;
     }
+
+    /* 2. PENYESUAIAN KHUSUS UNTUK HP (PERANGKAT SELULER < 768px) */
+    @media (max-width: 768px) {
+        .main-wrapper {
+            padding-bottom: 25px;
+        }
+
+        .greeting-pill {
+            font-size: 0.8rem;
+            padding: 4px 14px;
+            margin-bottom: 10px;
+        }
+
+        .hero-banner {
+            flex-direction: column;
+            text-align: center;
+            padding: 16px;
+            gap: 12px;
+            border-radius: 16px;
+        }
+
+        .hero-icon {
+            width: 70px !important;
+            height: 70px !important;
+        }
+
+        .main-title {
+            font-size: 1.55rem !important;
+            margin-bottom: 6px;
+        }
+
+        .main-desc {
+            font-size: 0.88rem !important;
+            line-height: 1.45;
+        }
+
+        .tag-wrapper {
+            justify-content: center;
+            gap: 5px;
+            margin-top: 10px;
+        }
+
+        .tag-item {
+            font-size: 0.72rem;
+            padding: 2px 8px;
+        }
+
+        .metric-card {
+            padding: 10px;
+            margin-bottom: 6px;
+        }
+
+        .metric-num {
+            font-size: 1rem !important;
+        }
+
+        .metric-info {
+            font-size: 0.78rem !important;
+        }
+
+        .section-headline {
+            font-size: 1.3rem !important;
+            margin-top: 22px;
+        }
+
+        .section-subtext {
+            font-size: 0.85rem !important;
+            margin-bottom: 14px;
+        }
+
+        .card-info {
+            padding: 12px 14px !important;
+            border-radius: 12px !important;
+            margin-bottom: 10px !important;
+        }
+
+        .card-info-title {
+            font-size: 0.98rem !important;
+        }
+
+        .card-info-desc {
+            font-size: 0.85rem !important;
+            line-height: 1.4;
+        }
+
+        .stTextArea textarea {
+            font-size: 0.92rem !important;
+            padding: 10px !important;
+            border-radius: 12px !important;
+        }
+
+        div.stButton > button {
+            font-size: 0.92rem !important;
+            padding: 8px 14px !important;
+            border-radius: 20px !important;
+        }
+
+        .topic-card {
+            min-height: 55px;
+            padding: 10px;
+            border-radius: 12px;
+        }
+
+        .topic-name {
+            font-size: 0.95rem;
+        }
+    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -423,7 +487,7 @@ st.markdown("""
 
 st.markdown(f"""
 <div class="hero-banner">
-    <div style="flex-shrink: 0; width: 100px; height: 100px;">
+    <div class="hero-icon">
         <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
             <defs>
                 <linearGradient id="pinkHead" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -461,10 +525,10 @@ st.markdown(f"""
             Terhubung otomatis dengan seluruh arsip kebahasaan Anda yang tersimpan di dalam basis data.
         </p>
         <div class="tag-wrapper">
-            <span class="tag-item">📚 {total_materi} Rumpun Materi Tersedia</span>
-            <span class="tag-item">🎯 Sinkronisasi Otomatis</span>
+            <span class="tag-item">📚 {total_materi} Rumpun Materi</span>
+            <span class="tag-item">🎯 Sinkron Otomatis</span>
             <span class="tag-item">🤖 Asisten Interaktif</span>
-            <span class="tag-item">🧠 AI Pembelajaran Cerdas</span>
+            <span class="tag-item">🧠 AI Cerdas</span>
         </div>
     </div>
 </div>
@@ -475,22 +539,22 @@ col_m1, col_m2, col_m3 = st.columns(3)
 with col_m1:
     st.markdown(f"""
     <div class="metric-card">
-        <div class="metric-num">📖 {total_materi} Materi Terintegrasi</div>
+        <div class="metric-num">📖 {total_materi} Materi</div>
         <div class="metric-info">Siap dipelajari dan dianalisis.</div>
     </div>
     """, unsafe_allow_html=True)
 with col_m2:
     st.markdown("""
     <div class="metric-card">
-        <div class="metric-num">💭 Ruang Konsultasi</div>
-        <div class="metric-info">Eksplorasi konsep tata bahasa & sastra.</div>
+        <div class="metric-num">💭 Konsultasi</div>
+        <div class="metric-info">Eksplorasi tata bahasa & sastra.</div>
     </div>
     """, unsafe_allow_html=True)
 with col_m3:
     st.markdown("""
     <div class="metric-card">
-        <div class="metric-num">🔍 Deteksi Cerdas</div>
-        <div class="metric-info">Otomatis sinkron dengan arsip materi.</div>
+        <div class="metric-num">🔍 Cerdas</div>
+        <div class="metric-info">Otomatis sinkron dengan arsip.</div>
     </div>
     """, unsafe_allow_html=True)
 
@@ -510,19 +574,15 @@ else:
         else f"📚 Lihat Daftar Materi ({total_materi} materi tersedia)"
     )
 
-    st.markdown('<div class="daftar-materi-button">', unsafe_allow_html=True)
     if st.button(label_daftar, use_container_width=True, key="toggle_daftar_materi"):
         st.session_state.tampilkan_daftar_materi = (
             not st.session_state.tampilkan_daftar_materi
         )
         st.rerun()
-    st.markdown('</div>', unsafe_allow_html=True)
 
     if st.session_state.tampilkan_daftar_materi:
-        st.markdown('<div class="daftar-materi-content">', unsafe_allow_html=True)
         st.markdown(
-            '<p style="color:#6a4050; margin: 10px 0 15px 0; '
-            'font-family: Times New Roman, Times, serif;">'
+            '<p style="color:#6a4050; margin: 10px 0 15px 0; font-style: italic;">'
             'Pilih salah satu materi untuk membuka isi dan contoh pertanyaannya.'
             '</p>',
             unsafe_allow_html=True
@@ -566,8 +626,6 @@ else:
                         st.session_state.jawaban_tutor = ambil_konten(m2["path"])
                         st.rerun()
 
-        st.markdown('</div>', unsafe_allow_html=True)
-
 # ----------------- 4. INFORMASI DINAMIS BERDASARKAN DATABASE -----------------
 pertanyaan_kerap = buat_pertanyaan_kerap_muncul(materi_aktif)
 panduan_bertanya = buat_panduan_bertanya(materi_aktif)
@@ -577,7 +635,7 @@ if not faq_html:
     faq_html = "Belum ada pertanyaan yang dapat dibuat. Tambahkan materi ke folder database."
 
 st.markdown(f"""
-<div class="card-info">
+<div class="card-info" style="margin-top:20px;">
     <div class="card-info-title">🔥 Pertanyaan yang Kerap Muncul</div>
     <div class="card-info-desc">{faq_html}</div>
 </div>
@@ -593,7 +651,7 @@ st.markdown(f"""
 
 # ----------------- 5. FORMULIR TANYA JAWAB UTAMA -----------------
 st.markdown("""
-<div class="card-info" style="margin-top: 25px; border-left-color: #7b113a;">
+<div class="card-info" style="margin-top: 20px; border-left-color: #7b113a;">
     <div class="card-info-title">💬 Ajukan Pertanyaan kepada AI Tutor</div>
     <div class="card-info-desc">
         Tuliskan konsep atau pertanyaan kebahasaan Anda. AI Tutor Naima H akan menelusuri data materi yang bersesuaian.
@@ -605,7 +663,7 @@ pertanyaan_user = st.text_area(
     label="Kotak Pertanyaan",
     key="teks_pertanyaan",
     placeholder="Ketik pertanyaan atau konsep kebahasaan yang ingin Anda pelajari...",
-    height=120,
+    height=100,
     label_visibility="collapsed"
 )
 
@@ -619,7 +677,6 @@ with col_aksi1:
             st.warning("Silakan tuliskan pertanyaan terlebih dahulu ya! 💕")
 
 with col_aksi2:
-    # Menggunakan callback bersihkan_halaman
     st.button("🔄 Bersihkan", on_click=bersihkan_halaman)
 
 # Kotak Hasil Jawaban / Isi Berkas
@@ -633,7 +690,7 @@ if st.session_state.jawaban_tutor:
 
 # ----------------- 6. PENUTUP -----------------
 st.markdown("""
-<div class="card-info" style="margin-top: 30px; background: #fae4ec; border: 1.5px dashed #ad1457; text-align: center;">
+<div class="card-info" style="margin-top: 25px; background: #fae4ec; border: 1.5px dashed #ad1457; text-align: center;">
     <div class="card-info-title">🌱 Terus Asah Kemampuan Bahasa Bersama AI Tutor Naima H 🌸</div>
     <div class="card-info-desc">
         “Belajar menjadi lebih bermakna ketika setiap materi membuka ruang untuk bertanya, memahami, dan berkembang.”
