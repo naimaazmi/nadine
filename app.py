@@ -157,6 +157,11 @@ if "jawaban_tutor" not in st.session_state:
 if "tampilkan_daftar_materi" not in st.session_state:
     st.session_state.tampilkan_daftar_materi = False
 
+# Callback khusus untuk membersihkan input & jawaban
+def bersihkan_halaman():
+    st.session_state.teks_pertanyaan = ""
+    st.session_state.jawaban_tutor = None
+
 # ----------------- CSS: BOTANICAL FLORAL SOFT PINK & TIMES NEW ROMAN -----------------
 st.markdown("""
 <style>
@@ -608,10 +613,8 @@ with col_aksi1:
             st.warning("Silakan tuliskan pertanyaan terlebih dahulu ya! 💕")
 
 with col_aksi2:
-    if st.button("🔄 Bersihkan"):
-        st.session_state.teks_pertanyaan = ""
-        st.session_state.jawaban_tutor = None
-        st.rerun()
+    # Memanggil callback bersihkan_halaman sebelum widget dirender
+    st.button("🔄 Bersihkan", on_click=bersihkan_halaman)
 
 # Kotak Hasil Jawaban / Isi Berkas
 if st.session_state.jawaban_tutor:
